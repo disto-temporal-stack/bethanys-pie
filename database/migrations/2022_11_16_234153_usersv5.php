@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('role_id')->unsigned();
             //Hacer efectivo la relación
             $table->foreign('role_id')->references('id')
-                                    ->on('rols');
+                                    ->on('roles');
         });
 
     }

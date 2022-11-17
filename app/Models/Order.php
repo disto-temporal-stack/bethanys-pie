@@ -7,19 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-
-      protected $fillable = [
-        'id',
-        'OrderTotal',
-        'OrderPlaced',
-        'domiciliary_id',
-        'Address',
-        'City',
-        'Department',
-        'created_at',
-        'updated_at'
-
-       
-    ];
     use HasFactory;
+
+    protected $fillable = [
+     'id',
+      'order_total',
+      'order_placed',
+      'delivery_man_id',
+      'address',
+      'city',
+      'department',
+      'created_at',
+      'updated_at'
+    ];
+
+    public function deliveryMan() {
+      return $this->belongsTo(DeliveryMan::class);
+    }
 }

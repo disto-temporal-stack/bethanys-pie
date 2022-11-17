@@ -12,11 +12,8 @@ class Permission extends Model
         'id',
         'created_at',
         'updated_at',
-        'URL',
-        
-        'Method',
-        
-       
+        'url',
+        'method',       
     ];
 
     //Relación n a n

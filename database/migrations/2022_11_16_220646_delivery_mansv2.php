@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('delivery_mans', function (Blueprint $table) {
             //Agregar la columna que contendrá el dato foráneo
-            $table->integer('domiciliary_id')->unsigned()->unique();
+            $table->bigInteger('user_id')->unsigned()->unique();
            
             //Hacer efectivo la relación
-            $table->foreign('domiciliary_id')->references('id')
-                                   ->on('domiciliaries')
+            $table->foreign('user_id')->references('id')
+                                   ->on('users')
                                     ->onDelete('cascade');
         });
 

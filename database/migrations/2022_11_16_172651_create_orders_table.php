@@ -15,18 +15,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->decimal('order_total', 10,5);
+            $table->datetime('order_placed');
+            $table->string('address');
+            $table->string('city');
+            $table->string('department');
             $table->timestamps();
-            $table->decimal('OrderTotal', 10,5);
-            $table->datetime('OrderPlaced');
-            $table->integer('DomiciliaryId');
-            $table->string('Address');
-            $table->string('City');
-            $table->string('Department');
-
-
-
-
-
 
         });
     }

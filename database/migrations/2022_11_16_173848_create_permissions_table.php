@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
+            $table->string('url');
+            $table->string('method');
             $table->timestamps();
-            $table->string('URL');
-            $table->string('Method');
-
-
         });
     }
 

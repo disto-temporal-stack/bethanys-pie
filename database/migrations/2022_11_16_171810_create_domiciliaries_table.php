@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('domiciliaries', function (Blueprint $table) {
+        Schema::create('delivery_mans', function (Blueprint $table) {
             $table->id();
+            $table->float('score', 2, 1);
+            $table->integer('number_of_orders');
             $table->timestamps();
-            $table->float('Calification',2,1);
-            $table->integer('numberOfOrders');
-
-
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domiciliaries');
+        Schema::dropIfExists('delivery_mans');
     }
 };

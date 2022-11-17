@@ -6,8 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\DeliveryMan;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Domiciliarie;
 use App\Models\Rol;
 
 class User extends Authenticatable
@@ -24,24 +24,21 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'domiciliary_id',
         'role_id',
         'created_at',
         'updated_at'
     ];
 
-     //Relación 1 a 1
-     public function domiciliary()
-     {
-         return $this->hasOne(Domiciliarie::class);
-     }
+    // Relación 1 a 1
+    public function deliveryMan()
+    {
+        return $this->belongsTo(DeliveryMan::class);
+    }
 
-     public function rol()
-     {
-         return $this->belongsTo(Rol::class);
-     }
- 
- 
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

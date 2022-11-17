@@ -7,29 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Order;
 
-class Domiciliarie extends Model
+class DeliveryMan extends Model
 {
-  
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'Calification',
-        'NumberOfOrders',
+        'qualification',
+        'number_of_orders',
+        'user_id',
         'created_at',
         'updated_at'
-       
     ];
 
     public function user()
     {
         return $this->hasOne(User::class);
     }
-     //Relación 1 a n
-     public function orders()
-     {
-         return $this->hasMany(Order::class);
-     }
+
+    //Relación 1 a n
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
  
 
 }

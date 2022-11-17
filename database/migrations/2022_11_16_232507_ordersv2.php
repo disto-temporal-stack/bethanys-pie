@@ -16,10 +16,10 @@ return new class extends Migration
         //
         Schema::table('orders', function (Blueprint $table) {
             //Agregar la columna que contendrá el dato foráneo
-            $table->bigInteger('domiciliary_id')->unsigned()->unique();
+            $table->bigInteger('delivery_man_id')->unsigned()->unique();
             //Hacer efectivo la relación
-            $table->foreign('domiciliary_id')->references('id')
-                                    ->on('domiciliaries')
+            $table->foreign('delivery_man_id')->references('id')
+                                    ->on('delivery_mans')
                                     ->onDelete('cascade');
         });
 

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->bigInteger('permission_id')->unsigned();
             //Hacer efectivo la relación
             $table->foreign('role_id')->references('id')
-                                    ->on('rols')
+                                    ->on('roles')
                                     ->onDelete('cascade');
  
             $table->foreign('permission_id')->references('id')
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('permission_role');
     }
 };
