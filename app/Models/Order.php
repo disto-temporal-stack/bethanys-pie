@@ -24,4 +24,9 @@ class Order extends Model
     public function deliveryMan() {
       return $this->belongsTo(DeliveryMan::class);
     }
+
+    // Relación n - n a Pies
+    public function pies() {
+      return $this->belongsToMany(Pie::class);
+  }
 }

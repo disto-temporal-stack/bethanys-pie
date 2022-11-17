@@ -9,7 +9,10 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Ingredient;
+use App\Models\OrderDetail;
 use App\Models\PermissionRole;
+use App\Models\PieIngredient;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,4 +107,28 @@ Route::controller(Pie::class)->group(function () {
     Route::post('pies', 'store'); 
     Route::put('pies/{id}', 'update'); 
     Route::delete('pies/{id}', 'destroy'); 
+});
+
+Route::controller(Ingredient::class)->group(function () {
+    Route::get('ingredients','index'); 
+    Route::get('ingredients/{id}', 'show'); 
+    Route::post('ingredients', 'store'); 
+    Route::put('ingredients/{id}', 'update'); 
+    Route::delete('ingredients/{id}', 'destroy'); 
+});
+
+Route::controller(PieIngredient::class)->group(function () {
+    Route::get('pie-ingredients','index'); 
+    Route::get('pie-ingredients/{id}', 'show'); 
+    Route::post('pie-ingredients', 'store'); 
+    Route::put('pie-ingredients/{id}', 'update'); 
+    Route::delete('pie-ingredients/{id}', 'destroy'); 
+});
+
+Route::controller(OrderDetail::class)->group(function () {
+    Route::get('order-detail','index'); 
+    Route::get('order-detail/{id}', 'show'); 
+    Route::post('order-detail', 'store'); 
+    Route::put('order-detail/{id}', 'update'); 
+    Route::delete('order-detail/{id}', 'destroy'); 
 });

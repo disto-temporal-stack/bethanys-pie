@@ -37,5 +37,14 @@ class Pie extends Model
         return $this->belongsTo(Provider::class);
     }
 
+    // Relación n - n a Ingredient
+    public function ingredients() {
+        return $this->belongsToMany(Ingredient::class);
+    }
+
+    // Relación n - n a Order
+    public function orders() {
+        return $this->belongsToMany(Order::class);
+    }
     
 }
