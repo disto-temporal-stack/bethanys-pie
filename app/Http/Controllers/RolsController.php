@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rol;
 
-class RolsController extends Controller
+class RolesController extends Controller
 {
     //
     public function index(){
