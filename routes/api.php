@@ -3,10 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionsController;
-use App\Http\Controllers\DomiciliariesController;
+use App\Http\Controllers\DeliveryMansController;
 use App\Http\Controllers\OrdersController;
-use App\Http\Controllers\RolsController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
+use App\Models\Category;
+use App\Models\Image;
+use App\Models\PermissionRole;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,12 +33,13 @@ Route::controller(PermissionsController::class)->group(function () {
     Route::put('permissions/{id}', 'update'); //Para actualizar
     Route::delete('permissions/{id}', 'destroy'); //Para eliminar un registro
 });
-Route::controller(DomiciliariesController::class)->group(function () {
-    Route::get('domiciliaries','index'); 
-    Route::get('domiciliaries/{id}', 'show'); 
-    Route::post('domiciliaries', 'store'); 
-    Route::put('domiciliaries/{id}', 'update'); 
-    Route::delete('domiciliaries/{id}', 'destroy'); 
+
+Route::controller(DeliveryMansController::class)->group(function () {
+    Route::get('delivery_mans','index'); 
+    Route::get('delivery_mans/{id}', 'show'); 
+    Route::post('delivery_mans', 'store'); 
+    Route::put('delivery_mans/{id}', 'update'); 
+    Route::delete('delivery_mans/{id}', 'destroy'); 
 });
 
 Route::controller(OrdersController::class)->group(function () {
@@ -44,12 +49,13 @@ Route::controller(OrdersController::class)->group(function () {
     Route::put('orders/{id}', 'update'); 
     Route::delete('orders/{id}', 'destroy'); 
 });
-Route::controller(RolsController::class)->group(function () {
-    Route::get('rols','index'); 
-    Route::get('rols/{id}', 'show'); 
-    Route::post('rols', 'store'); 
-    Route::put('rols/{id}', 'update'); 
-    Route::delete('rols/{id}', 'destroy'); 
+
+Route::controller(RolesController::class)->group(function () {
+    Route::get('roles','index'); 
+    Route::get('roles/{id}', 'show'); 
+    Route::post('roles', 'store'); 
+    Route::put('roles/{id}', 'update'); 
+    Route::delete('roles/{id}', 'destroy'); 
 });
 
 Route::controller(UsersController::class)->group(function () {
@@ -60,4 +66,42 @@ Route::controller(UsersController::class)->group(function () {
     Route::delete('users/{id}', 'destroy'); 
 });
 
+Route::controller(PermissionRole::class)->group(function () {
+    Route::get('permission_roles','index'); 
+    Route::get('permission_roles/{id}', 'show'); 
+    Route::post('permission_roles', 'store'); 
+    Route::put('permission_roles/{id}', 'update'); 
+    Route::delete('permission_roles/{id}', 'destroy'); 
+});
 
+Route::controller(Category::class)->group(function () {
+    Route::get('categories','index'); 
+    Route::get('categories/{id}', 'show'); 
+    Route::post('categories', 'store'); 
+    Route::put('categories/{id}', 'update'); 
+    Route::delete('categories/{id}', 'destroy'); 
+});
+
+Route::controller(Image::class)->group(function () {
+    Route::get('images','index'); 
+    Route::get('images/{id}', 'show'); 
+    Route::post('images', 'store'); 
+    Route::put('images/{id}', 'update'); 
+    Route::delete('images/{id}', 'destroy'); 
+});
+
+Route::controller(Provider::class)->group(function () {
+    Route::get('providers','index'); 
+    Route::get('providers/{id}', 'show'); 
+    Route::post('providers', 'store'); 
+    Route::put('providers/{id}', 'update'); 
+    Route::delete('providers/{id}', 'destroy'); 
+});
+
+Route::controller(Pie::class)->group(function () {
+    Route::get('pies','index'); 
+    Route::get('pies/{id}', 'show'); 
+    Route::post('pies', 'store'); 
+    Route::put('pies/{id}', 'update'); 
+    Route::delete('pies/{id}', 'destroy'); 
+});
