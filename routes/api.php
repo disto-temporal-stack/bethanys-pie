@@ -3,16 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\PermissionRoleController;
 use App\Http\Controllers\DeliveryMansController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\PieIngredientController;
+use App\Http\Controllers\IngredientsController;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\CategoriesController;
+
+use App\Http\Controllers\PiesController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
-use App\Models\Category;
-use App\Models\Image;
-use App\Models\Ingredient;
-use App\Models\OrderDetail;
-use App\Models\PermissionRole;
-use App\Models\PieIngredient;
+use App\Http\Controllers\ProvidersController;
+use App\Http\Controllers\SecurityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +73,7 @@ Route::controller(UsersController::class)->group(function () {
     Route::delete('users/{id}', 'destroy'); 
 });
 
-Route::controller(PermissionRole::class)->group(function () {
+Route::controller(PermissionRoleController::class)->group(function () {
     Route::get('permission_roles','index'); 
     Route::get('permission_roles/{id}', 'show'); 
     Route::post('permission_roles', 'store'); 
@@ -77,7 +81,7 @@ Route::controller(PermissionRole::class)->group(function () {
     Route::delete('permission_roles/{id}', 'destroy'); 
 });
 
-Route::controller(Category::class)->group(function () {
+Route::controller(CategoriesController::class)->group(function () {
     Route::get('categories','index'); 
     Route::get('categories/{id}', 'show'); 
     Route::post('categories', 'store'); 
@@ -85,7 +89,7 @@ Route::controller(Category::class)->group(function () {
     Route::delete('categories/{id}', 'destroy'); 
 });
 
-Route::controller(Image::class)->group(function () {
+Route::controller(ImagesController::class)->group(function () {
     Route::get('images','index'); 
     Route::get('images/{id}', 'show'); 
     Route::post('images', 'store'); 
@@ -93,7 +97,7 @@ Route::controller(Image::class)->group(function () {
     Route::delete('images/{id}', 'destroy'); 
 });
 
-Route::controller(Provider::class)->group(function () {
+Route::controller(ProvidersController::class)->group(function () {
     Route::get('providers','index'); 
     Route::get('providers/{id}', 'show'); 
     Route::post('providers', 'store'); 
@@ -101,7 +105,7 @@ Route::controller(Provider::class)->group(function () {
     Route::delete('providers/{id}', 'destroy'); 
 });
 
-Route::controller(Pie::class)->group(function () {
+Route::controller(PiesController::class)->group(function () {
     Route::get('pies','index'); 
     Route::get('pies/{id}', 'show'); 
     Route::post('pies', 'store'); 
@@ -109,7 +113,7 @@ Route::controller(Pie::class)->group(function () {
     Route::delete('pies/{id}', 'destroy'); 
 });
 
-Route::controller(Ingredient::class)->group(function () {
+Route::controller(IngredientsController::class)->group(function () {
     Route::get('ingredients','index'); 
     Route::get('ingredients/{id}', 'show'); 
     Route::post('ingredients', 'store'); 
@@ -117,18 +121,23 @@ Route::controller(Ingredient::class)->group(function () {
     Route::delete('ingredients/{id}', 'destroy'); 
 });
 
-Route::controller(PieIngredient::class)->group(function () {
-    Route::get('pie-ingredients','index'); 
-    Route::get('pie-ingredients/{id}', 'show'); 
-    Route::post('pie-ingredients', 'store'); 
+Route::controller(PieIngredientController::class)->group(function () {
+    Route::get('pie-ingredient','index'); 
+    Route::get('pie-ingredient/{id}', 'show'); 
+    Route::post('pie-ingredient', 'store'); 
     Route::put('pie-ingredients/{id}', 'update'); 
     Route::delete('pie-ingredients/{id}', 'destroy'); 
 });
 
-Route::controller(OrderDetail::class)->group(function () {
+Route::controller(OrderDetailController::class)->group(function () {
     Route::get('order-detail','index'); 
     Route::get('order-detail/{id}', 'show'); 
     Route::post('order-detail', 'store'); 
     Route::put('order-detail/{id}', 'update'); 
     Route::delete('order-detail/{id}', 'destroy'); 
+});
+
+Route::controller(SecurityController::class)->group(function () {
+    Route::post('login', 'login'); 
+    Route::post('logout', 'logout'); 
 });

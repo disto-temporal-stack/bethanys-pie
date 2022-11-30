@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
 
 class UsersController extends Controller
 {
@@ -21,8 +22,24 @@ class UsersController extends Controller
         }
     }
     public function store(Request $request){
-        $the_user=User::create($request->all());
-        return response($the_user,201);
+        try {
+            $data = $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+                'role_id' => 'required'
+            ]);
+    
+            $data['password'] = bcrypt($request->password);
+    
+            $created_user = User::create($data);
+            $token = $created_user->createToken('API Token')->accessToken;
+    
+            return response(['data' => $created_user, 'token' => $token], 201);
+        } catch (Exception $e) {
+            error_log($e);
+            return response(['data' => 'Error in user creation'], 400);
+        }
     }
  
     public function update(Request $request,$id){
