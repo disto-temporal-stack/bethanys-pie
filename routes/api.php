@@ -66,7 +66,7 @@ Route::controller(RolesController::class)->group(function () {
 });
 
 Route::controller(UsersController::class)->group(function () {
-    Route::get('users','index'); 
+    Route::get('users','index')->middleware(['user_access']); 
     Route::get('users/{id}', 'show'); 
     Route::post('users', 'store'); 
     Route::put('users/{id}', 'update'); 
