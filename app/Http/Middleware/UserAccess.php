@@ -2,6 +2,10 @@
 
 namespace App\Http\Middleware;
 
+
+use App\Models\Permission;
+use App\Models\PermissionRole;
+
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,16 +20,50 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth('api')->user()){
-            return response()->json(['You do not have permission to access for this page.'],401);            
-        }else{
-           
-            $user= auth('api')->user();
-            error_log('usuario>'.$user);
-            error_log('id>'.$user->id);
-            return $next($request);
- 
+
+        $user = auth('api')->user();
+        if (!$user) {
+            return response()->json(['You don\'t have permissions'], 401);
         }
+
+        $method = $request->method();
+        $path = $this->clearRequestPath($request->path());
+        $permission = Permission::where(
+            ['method' => $method, 'url' => $path]
+        )->first();
+
+        if (!$permission) {
+            return response()->json(['You don\'t have permissions'], 401);
+        }
+
+        $permissionRole = PermissionRole::where(
+            ['role_id' => $user->role_id, 'permission_id' => $permission->id]
+        )->first();
+        if (!$permissionRole) {
+            return response()->json(['You don\'t have permissions'], 401);
+        }
+
+        return $next($request);
+    }
+
+    private function clearRequestPath($path) {
+        $pathArr = explode('/', $path);
+        $arrToJoin = [];
+
+        foreach ($pathArr as $key => $value) {
+            if ($key == 0) {
+                continue;
+            }
+
+            if (is_numeric($value)) {
+                array_push($arrToJoin, '?');
+                continue;
+            }
+
+            array_push($arrToJoin, $value);
+        }
+
+        return implode('/', $arrToJoin);
 
     }
 }
